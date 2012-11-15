@@ -31,6 +31,10 @@ public class Path {
 		return f;
 	}
 	
+	public Path clone() {
+		return new Path(edges.clone());
+	}
+	
 	public float getWeight(){
 		return weight;
 	}
