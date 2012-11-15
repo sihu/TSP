@@ -18,13 +18,13 @@ public class TSP {
 		path = findPath();
 		printSolution();
 		drawGUI();
-	}
+	} 
 
 	private void drawGUI() {
 		
 		new GUI(path);
 	}
-	
+	 
 	private void printSolution() {
 		
 		System.out.println(path.toString());
@@ -48,8 +48,7 @@ public class TSP {
 			path[i] = vertices[best];
 //			System.out.println("Added " + path[i].getID() + " to path");
 			used[best] = true;
-		}
-		
+		}	
 		return new Path(path);
 	}
 
