@@ -7,6 +7,7 @@ public class TSP {
 	Vertex[] vertices;
 	BufferedReader in;
 	Path path;
+	TwoOpt twoOpt;
 	
 	public static void main(String[] args) {
 		new TSP();
@@ -16,7 +17,16 @@ public class TSP {
 		in = new BufferedReader(new InputStreamReader(System.in));
 		readInstance();
 		path = findPath();
+		path.sortEdges();
 		printSolution();
+		System.out.println("Weight: " + path.getWeight());
+		//drawGUI();
+		Path path2 = path.clone();
+		twoOpt = new TwoOpt(path2);
+		twoOpt.optimizePath();
+		path2.sortEdges();
+		System.out.println(path2.toString());
+		System.out.println("Weight: " + path2.getWeight());
 		drawGUI();
 	} 
 
