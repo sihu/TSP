@@ -20,9 +20,13 @@ public class TSP {
 
 	private void readInstance() {
 		try {
-			int m = in.read();
+			int m = Integer.valueOf(in.readLine());
 			for(int i = 0; i < m; i++) {
-				vertices.add(new Vertex());
+				String[] vertex = in.readLine().split(" ");
+				float xCoord = Float.valueOf(vertex[0]);
+				float yCoord = Float.valueOf(vertex[1]);			
+				vertices.add(new Vertex(xCoord,yCoord));
+				System.out.println("Added coord (" + xCoord + ", " + yCoord + ")");
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
