@@ -23,7 +23,7 @@ public class Path {
 		return edges;
 	}
 	
-	private float calculateWeight() {
+	public float calculateWeight() {
 		float f = 0;
 		for (Edge e : edges) {
 			f += e.getWeight();
@@ -37,5 +37,16 @@ public class Path {
 		for (int i = 0; i < edges.length; i++) {
 			path += edges[i].getP().getID() + "\n";
 		}
+
+	public Path clone() {
+		return new Path(edges.clone());
+	}
+	
+	public float getWeight(){
+		return weight;
+	}
+	
+	public Edge[] getEdges() {
+		return edges;
 	}
 }
