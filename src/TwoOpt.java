@@ -16,7 +16,11 @@ public class TwoOpt {
 	}
 	
 	private void switchEdges(Edge e, Edge e2) {
-		
+		Vertex v,v2;
+		v = e.getP();
+		v2 = e2.getP();
+		e.setP(v2);
+		e2.setP(v);
 	}
 	
 	public Path getPath() {
