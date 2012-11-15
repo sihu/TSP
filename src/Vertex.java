@@ -2,10 +2,12 @@
 public class Vertex {
 
 	private float xCoord, yCoord;
+	int id;
 	
-	public Vertex(float xCoord, float yCoord) {
+	public Vertex(float xCoord, float yCoord, int id) {
 		this.xCoord = xCoord;
 		this.yCoord = yCoord;
+		this.id = id;
 	}
 	
 	public float getX() {
