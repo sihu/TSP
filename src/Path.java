@@ -32,13 +32,31 @@ public class Path {
 	}
 	
 	public String toString() {
-		String path = "";
+		String path = edges[0].getP().getID() + "\n";
 		
 		for (int i = 0; i < edges.length; i++) {
-			path += edges[i].getP().getID() + "\n";
+			path += edges[i].getQ().getID() + "\n";
 		}
 		
 		return path;
+	}
+	
+	private Edge getEdgeByPID(int id) {
+		Edge edge = null;
+		for (int i = 0; i < edges.length; i++) {
+			if(edges[i].getP().getID() == id)
+				edge = edges[i]; break;
+		}
+		return edge;
+	}
+	
+	public void sortEdges() {
+		Edge[] newEdges = new Edge[edges.length];
+		newEdges[0] = getEdgeByPID(0);
+		for (int i = 1; i < newEdges.length; i++) {
+			newEdges[i] = getEdgeByPID(newEdges[i-1].getQ().getID()); 
+		}
+		edges = newEdges;
 	}
 
 	public Path clone() {
