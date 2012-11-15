@@ -19,4 +19,9 @@ public class Vertex {
 	public String toString(){
 		return xCoord + " " + yCoord;
 	}
+	
+	public float distanceTo(Vertex v) {
+		return (float) Math.sqrt(Math.pow((getX() - v.getX()),2)
+				+ Math.pow((getY() - v.getY()),2));
+	}
 }
