@@ -2,7 +2,7 @@
 public class Vertex {
 
 	private float xCoord, yCoord;
-	int id;
+	private int id;
 	
 	public Vertex(float xCoord, float yCoord, int id) {
 		this.xCoord = xCoord;

@@ -29,7 +29,7 @@ public class TSP {
 
 	private void drawGUI() {
 		
-//		new GUI(Path);
+		new GUI(path);
 	}
 	
 	private void printSolution() {
@@ -42,8 +42,9 @@ public class TSP {
 		Vertex[] path = new Vertex[m]; 
 		boolean[] used = new boolean[m];
 		path[0] = vertices[0];
+		used[0] = true;
 		
-		for (int i = 1; i <= m; i++) {
+		for (int i = 1; i < m; i++) {
 			int best = -1;
 			
 			for (int j = 0; j < m; j++) {
@@ -52,6 +53,7 @@ public class TSP {
 						best = j;
 			}
 			path[i] = vertices[best];
+//			System.out.println("Added " + path[i].getID() + " to path");
 			used[best] = true;
 		}
 		
@@ -67,7 +69,7 @@ public class TSP {
 				float xCoord = Float.valueOf(vertex[0]);
 				float yCoord = Float.valueOf(vertex[1]);			
 				vertices[i] = new Vertex(xCoord,yCoord,i);
-				System.out.println("Added vertex with id " + i + " (" + xCoord + ", " + yCoord + ")");
+//				System.out.println("Added vertex with id " + i + " (" + xCoord + ", " + yCoord + ")");
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
