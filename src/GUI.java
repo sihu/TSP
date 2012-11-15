@@ -5,6 +5,7 @@ public class GUI extends Canvas
 {
 	Vertex[] vertices;
 	int[] path;
+	private static final int scaling = 5;
 	
 	public GUI(Vertex[] vertices, int[] path) {
 		
@@ -20,11 +21,12 @@ public class GUI extends Canvas
 
 	public void paint(Graphics g) {
 		for (int i = 0; i < vertices.length; i++) {
-			g.drawOval((int) (vertices[i].getX()), (int) (vertices[i].getY()), 10, 10);
+			g.drawOval((int) (vertices[i].getX()*scaling), (int) (vertices[i].getY()*scaling), 10, 10);
 		}
 		
 		for (int j = 1; j < path.length; j++) {
-			g.drawLine((int) vertices[path[j-1]].getX(), (int) vertices[path[j-1]].getY(), (int) vertices[path[j]].getX(), (int) vertices[path[j]].getY());
+			g.drawLine((int) vertices[path[j-1]].getX()*scaling, (int) vertices[path[j-1]].getY()*scaling, 
+					(int) vertices[path[j]].getX()*scaling, (int) vertices[path[j]].getY()*scaling);
 		}
 	}
 

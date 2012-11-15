@@ -31,6 +31,13 @@ public class Path {
 		return f;
 	}
 	
+	public String toString() {
+		String path = "";
+		
+		for (int i = 0; i < edges.length; i++) {
+			path += edges[i].getP().getID() + "\n";
+		}
+
 	public Path clone() {
 		return new Path(edges.clone());
 	}
