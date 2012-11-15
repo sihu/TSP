@@ -23,7 +23,7 @@ public class Path {
 		return edges;
 	}
 	
-	private float calculateWeight() {
+	public float calculateWeight() {
 		float f = 0;
 		for (Edge e : edges) {
 			f += e.getWeight();
@@ -37,5 +37,9 @@ public class Path {
 	
 	public float getWeight(){
 		return weight;
+	}
+	
+	public Edge[] getEdges() {
+		return edges;
 	}
 }
