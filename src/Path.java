@@ -44,8 +44,9 @@ public class Path {
 	private Edge getEdgeByPID(int id) {
 		Edge edge = null;
 		for (int i = 0; i < edges.length; i++) {
-			if(edges[i].getP().getID() == id)
-				edge = edges[i]; break;
+			if(edges[i].getP().getID() == id) {
+				edge = edges[i]; break;				
+			}
 		}
 		return edge;
 	}
@@ -53,8 +54,12 @@ public class Path {
 	public void sortEdges() {
 		Edge[] newEdges = new Edge[edges.length];
 		newEdges[0] = getEdgeByPID(0);
-		for (int i = 1; i < newEdges.length; i++) {
-			newEdges[i] = getEdgeByPID(newEdges[i-1].getQ().getID()); 
+		Edge nextEdge;
+		for (int i = 1; i < edges.length; i++) {
+			nextEdge = getEdgeByPID(newEdges[i-1].getQ().getID()); 
+			if (nextEdge != null)
+				newEdges[i] = nextEdge;
+			else break;
 		}
 		edges = newEdges;
 	}
