@@ -15,4 +15,8 @@ public class Vertex {
 	public float getY() {
 		return yCoord;
 	}
+	
+	public String toString(){
+		return xCoord + " " + yCoord;
+	}
 }
