@@ -34,6 +34,7 @@ public class TSP {
 		int m = vertices.length;
 		Vertex[] path = new Vertex[m]; 
 		boolean[] used = new boolean[m];
+		path[0] = vertices[0];
 		
 		for (int i = 1; i <= m; i++) {
 			int best = -1;

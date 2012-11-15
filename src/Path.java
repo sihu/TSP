@@ -37,6 +37,9 @@ public class Path {
 		for (int i = 0; i < edges.length; i++) {
 			path += edges[i].getP().getID() + "\n";
 		}
+		
+		return path;
+	}
 
 	public Path clone() {
 		return new Path(edges.clone());

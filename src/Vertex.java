@@ -16,6 +16,10 @@ public class Vertex {
 	
 	public float getY() {
 		return yCoord;
+	} 
+	
+	public int getID() {
+		return id;
 	}
 	
 	public String toString(){
