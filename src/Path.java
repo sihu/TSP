@@ -30,4 +30,8 @@ public class Path {
 		}
 		return f;
 	}
+	
+	public float getWeight(){
+		return weight;
+	}
 }
