@@ -32,10 +32,10 @@ public class Path {
 	}
 	
 	public String toString() {
-		String path = "";
+		String path = edges[0].getP().getID() + "\n";
 		
 		for (int i = 0; i < edges.length; i++) {
-			path += edges[i].getP().getID() + "\n";
+			path += edges[i].getQ().getID() + "\n";
 		}
 		
 		return path;
