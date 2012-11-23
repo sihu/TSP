@@ -16,4 +16,12 @@ public class Graph {
 	public Vertex getVertex(int id) {
 		return vertices[id];
 	}
+	
+	public float getWeight(Path path) {
+		float f = 0;
+		for (int i = 0; i < path.getLength()-1; i++) {
+			f += distanceBetween(path.getPath()[i], path.getPath()[i+1]);
+		}
+		return f;
+	}
 }
