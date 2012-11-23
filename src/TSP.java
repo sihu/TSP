@@ -8,7 +8,7 @@ public class TSP {
 	Graph graph;
 	Path path;
 //	TwoOpt twoOpt;
-	boolean DEBUG = true;
+	boolean DEBUG = false;
 
 	public static void main(String[] args) {
 		new TSP();
@@ -18,29 +18,20 @@ public class TSP {
 		in = new BufferedReader(new InputStreamReader(System.in));
 		readInstance();
 		path = NaivePath.getNaivePath(graph);
-		if (DEBUG)
-			System.out.println("Weight: " + path.getWeight());
-		System.out.println(path.toString());
-		if (DEBUG)
+		if (DEBUG) {
+			System.out.println("Weight: " + graph.getWeight(path));
+			System.out.println(path.toString());
 			drawGUI();
+		}
 		if (DEBUG)
 			System.out.println("Optimizing path..");
-		path = new Path(TwoOpt.optimize(graph, path.getPath()), graph);
+		TwoOpt twoOpt = new TwoOpt(path, graph);
+		twoOpt.optimizePath();
 		if (DEBUG)
-			System.out.println("Weight: " + path.getWeight());
+			System.out.println("Weight: " + graph.getWeight(path));
 		System.out.println(path.toString());
 		if (DEBUG)
 			drawGUI();
-//		twoOpt = new TwoOpt(path2);
-//		twoOpt.optimizePath();
-//		path.sortEdges();
-//		if(DEBUG)
-//			System.out.println("Printing solution..");
-//		System.out.println(path2.toString());
-//		if(DEBUG) {
-//			System.out.println("Weight: " + path2.getWeight());
-//			drawGUI();
-//		}
 	} 
 
 	private void drawGUI() {

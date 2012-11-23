@@ -14,8 +14,8 @@ public class TwoOpt {
 		int[] path = this.path.getPath();
 		for (int i = 0; i < path.length-1; i++) {
 			for (int j = 0; j < path.length-1; j++) {
-				if (path[i] != path[j] && linesIntersects(graph.getVertex(i), graph.getVertex(i+1),
-						graph.getVertex(j), graph.getVertex(j+1))) {
+				if (path[i] != path[j] && linesIntersects(graph.getVertex(path[i]), graph.getVertex(path[i+1]),
+						graph.getVertex(path[j]), graph.getVertex(path[j+1]))) {
 						this.path.flipSubPath(i, j+1);
 						return;
 				}
