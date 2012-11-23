@@ -4,10 +4,12 @@ import java.awt.*;
 public class GUI extends Canvas
 {
 	private Path path;
+	private Graph graph;
 	private static final int scaling = 1;
 	
-	public GUI(Path path) {
+	public GUI(Graph graph, Path path) {
 		
+		this.graph = graph;
 		this.path = path;
 		
 		frame = new JFrame("TSP");
@@ -18,15 +20,9 @@ public class GUI extends Canvas
 	}
 
 	public void paint(Graphics g) {
-		
-		Edge[] edges = path.getEdges();
-		Vertex first = edges[0].getP();
-		
-		g.drawString(first.getID() + "", (int) first.getX()*scaling, (int) first.getY()*scaling);
-		
-		for (int i = 0; i < path.getEdges().length; i++) {
-			Vertex p = edges[i].getP();
-			Vertex q = edges[i].getQ();
+		for (int i = 0; i < path.getLength()-1; i++) {
+			Vertex p = graph.getVertex(path.getPathID(i));
+			Vertex q = graph.getVertex(path.getPathID(i+1));
 			
 			g.drawString(q.getID() + "", (int) q.getX()*scaling, (int) q.getY()*scaling);
 			g.drawLine((int) p.getX()*scaling, (int) p.getY()*scaling, (int) q.getX()*scaling, (int) q.getY()*scaling);

@@ -7,8 +7,8 @@ public class TSP {
 	BufferedReader in;
 	Graph graph;
 	Path path;
-	TwoOpt twoOpt;
-	boolean DEBUG = true;
+//	TwoOpt twoOpt;
+	boolean DEBUG = false;
 
 	public static void main(String[] args) {
 		new TSP();
@@ -22,27 +22,27 @@ public class TSP {
 		if(DEBUG)
 			System.out.println("Finding path..");
 		path = NaivePath.getNaivePath(graph);
-		path.sortEdges();
 		if(DEBUG)
 			System.out.println("Weight: " + path.getWeight());
+		System.out.println(path.toString());
+//		drawGUI();
 		if(DEBUG)
 			System.out.println("Optimizing path..");
-		Path path2 = path.clone();
-		twoOpt = new TwoOpt(path2);
-		twoOpt.optimizePath();
-		path.sortEdges();
-		if(DEBUG)
-			System.out.println("Printing solution..");
-		System.out.println(path2.toString());
-		if(DEBUG) {
-			System.out.println("Weight: " + path2.getWeight());
-			drawGUI();
-		}
+//		twoOpt = new TwoOpt(path2);
+//		twoOpt.optimizePath();
+//		path.sortEdges();
+//		if(DEBUG)
+//			System.out.println("Printing solution..");
+//		System.out.println(path2.toString());
+//		if(DEBUG) {
+//			System.out.println("Weight: " + path2.getWeight());
+//			drawGUI();
+//		}
 	} 
 
 	private void drawGUI() {
 
-		new GUI(path);
+		new GUI(graph, path);
 	}
 
 	private void readInstance() {

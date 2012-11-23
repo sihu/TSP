@@ -9,7 +9,11 @@ public class Graph {
 		this.distanceMatrix = distanceMatrix;
 	}
 	
-	public float distanceBetween(Vertex v, Vertex v2) {
-		return distanceMatrix[v.getID()][v2.getID()];
+	public float distanceBetween(int v1, int v2) {
+		return distanceMatrix[v1][v2];
+	}
+	
+	public Vertex getVertex(int id) {
+		return vertices[id];
 	}
 }
