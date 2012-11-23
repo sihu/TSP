@@ -37,5 +37,15 @@ public class Edge {
 		this.q = q;
 	}
 
+	public String toString() {
+		return "(" + p.getID() + ", " + q.getID() + ")";
+	}
+
+	public void flipEdge() {
+		Vertex tmp;
+		tmp = p;
+		p = q;
+		q = tmp;
+	}
 
 }

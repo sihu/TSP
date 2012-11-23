@@ -4,7 +4,7 @@ import java.awt.*;
 public class GUI extends Canvas
 {
 	private Path path;
-	private static final int scaling = 5;
+	private static final int scaling = 1;
 	
 	public GUI(Path path) {
 		
@@ -22,13 +22,13 @@ public class GUI extends Canvas
 		Edge[] edges = path.getEdges();
 		Vertex first = edges[0].getP();
 		
-		g.drawOval((int) first.getX()*scaling, (int) first.getY()*scaling, 10, 10);
+		g.drawString(first.getID() + "", (int) first.getX()*scaling, (int) first.getY()*scaling);
 		
 		for (int i = 0; i < path.getEdges().length; i++) {
 			Vertex p = edges[i].getP();
 			Vertex q = edges[i].getQ();
 			
-			g.drawOval((int) q.getX()*scaling, (int) q.getY()*scaling, 10, 10);
+			g.drawString(q.getID() + "", (int) q.getX()*scaling, (int) q.getY()*scaling);
 			g.drawLine((int) p.getX()*scaling, (int) p.getY()*scaling, (int) q.getX()*scaling, (int) q.getY()*scaling);
 		}
 	}

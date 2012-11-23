@@ -23,7 +23,7 @@ public class Vertex {
 	}
 	
 	public String toString(){
-		return xCoord + " " + yCoord;
+		return "(" + xCoord + ", " + yCoord + ")";
 	}
 	
 	public float distanceTo(Vertex v) {
