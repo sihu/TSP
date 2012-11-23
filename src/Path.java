@@ -3,7 +3,7 @@ public class Path {
 	private int[] path;
 	private int length;
 
-	public Path(int[] path, Graph graph) {
+	public Path(int[] path) {
 		this.path = path;
 		this.length = path.length;
 	}
@@ -22,6 +22,9 @@ public class Path {
 	}
 	public int getLength() {
 		return length;
+	}
+	public Path clone() {
+		return new Path(path.clone());
 	}
 	
 	public void flipSubPath(int v1, int v2)

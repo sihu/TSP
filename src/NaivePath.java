@@ -18,6 +18,6 @@ public class NaivePath {
 			path[i] = best;
 			used[best] = true;
 		}	
-		return new Path(path, g);
+		return new Path(path);
 	}
 }

@@ -9,12 +9,14 @@ public class TSP {
 	Path path;
 //	TwoOpt twoOpt;
 	boolean DEBUG = false;
+	long startTime;
 
 	public static void main(String[] args) {
 		new TSP();
 	}
 
 	TSP() {
+		startTime = System.currentTimeMillis();
 		in = new BufferedReader(new InputStreamReader(System.in));
 		readInstance();
 		path = NaivePath.getNaivePath(graph);
@@ -25,8 +27,13 @@ public class TSP {
 		}
 		if (DEBUG)
 			System.out.println("Optimizing path..");
+		//Path oldPath = path.clone();
+		float oldWeight = Float.MAX_VALUE;
 		TwoOpt twoOpt = new TwoOpt(path, graph);
-		twoOpt.optimizePath();
+		while (graph.getWeight(path)< oldWeight && System.currentTimeMillis()-startTime < 1500) {
+			oldWeight = graph.getWeight(path);
+			twoOpt.optimizePath();
+		}
 		if (DEBUG)
 			System.out.println("Weight: " + graph.getWeight(path));
 		System.out.println(path.toString());
