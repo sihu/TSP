@@ -8,7 +8,7 @@ public class TSP {
 	Graph graph;
 	Path path;
 //	TwoOpt twoOpt;
-	boolean DEBUG = false;
+	boolean DEBUG = true;
 
 	public static void main(String[] args) {
 		new TSP();
@@ -16,18 +16,21 @@ public class TSP {
 
 	TSP() {
 		in = new BufferedReader(new InputStreamReader(System.in));
-		if(DEBUG)
-			System.out.println("Reading TSP istance..");
 		readInstance();
-		if(DEBUG)
-			System.out.println("Finding path..");
 		path = NaivePath.getNaivePath(graph);
-		if(DEBUG)
+		if (DEBUG)
 			System.out.println("Weight: " + path.getWeight());
 		System.out.println(path.toString());
-//		drawGUI();
-		if(DEBUG)
+		if (DEBUG)
+			drawGUI();
+		if (DEBUG)
 			System.out.println("Optimizing path..");
+		path = new Path(TwoOpt.optimize(graph, path.getPath()), graph);
+		if (DEBUG)
+			System.out.println("Weight: " + path.getWeight());
+		System.out.println(path.toString());
+		if (DEBUG)
+			drawGUI();
 //		twoOpt = new TwoOpt(path2);
 //		twoOpt.optimizePath();
 //		path.sortEdges();
@@ -41,7 +44,6 @@ public class TSP {
 	} 
 
 	private void drawGUI() {
-
 		new GUI(graph, path);
 	}
 
@@ -58,6 +60,8 @@ public class TSP {
 				float xCoord = Float.valueOf(vertex[0]);
 				float yCoord = Float.valueOf(vertex[1]);			
 				vertices[i] = new Vertex(xCoord,yCoord,i);
+				if (DEBUG)
+					System.out.println("Added vertex (" + vertices[i].getX() + ", " + vertices[i].getY() + ")");
 			}
 
 			for (int i = 0; i < m; i++) {

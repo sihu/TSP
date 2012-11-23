@@ -15,7 +15,7 @@ public class TwoOpt {
 				System.out.println(path.getEdges()[i].toString());
 			}
 		}
-		
+
 		for (Edge e : path.getEdges()) {
 			for (Edge e2 : path.getEdges()) {
 				if (e != e2 && e.intersectsWith(e2)) {
@@ -49,9 +49,6 @@ public class TwoOpt {
 
 		if(DEBUG)
 			System.out.println("After switch:" + e + ", " + e2);
-
-
-		path.flipSubPath(v, v2);
 	}
 
 	public Path getPath() {

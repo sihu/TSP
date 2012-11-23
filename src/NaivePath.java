@@ -12,7 +12,7 @@ public class NaivePath {
 
 			for (int j = 0; j < m; j++) {
 				if (!used[j] && (best == -1 || g.distanceBetween(path[i-1],j) 
-						< g.distanceBetween(i-1, best)))
+						< g.distanceBetween(path[i-1], best)))
 					best = j;
 			}
 			path[i] = best;
