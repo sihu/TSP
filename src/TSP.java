@@ -8,7 +8,7 @@ public class TSP {
 	Graph graph;
 	Path path;
 	//	TwoOpt twoOpt;
-	boolean DEBUG = true;
+	boolean DEBUG = false;
 	long startTime;
 
 	public static void main(String[] args) {
@@ -27,25 +27,20 @@ public class TSP {
 			drawGUI("Greedy Tour");
 		}
 
-		float oldWeight = Float.MAX_VALUE;
-		TwoOpt twoOpt = new TwoOpt(path, graph, startTime);
+//		float oldWeight = Float.MAX_VALUE;
 //		while (graph.getWeight(path)< oldWeight) {
 //			oldWeight = graph.getWeight(path);
-//			//			path = twoOpt.optimize(graph, path);
-//			twoOpt.optimizePath();
+//			TwoOpt.optimizePath(graph, path, startTime);
 //		}
 //		if (DEBUG)
 //			System.out.println("Weight: " + graph.getWeight(path));
-//		System.out.println(path.toString());
 //		if (DEBUG)
-//			drawGUI("2-opt");
-
-		oldWeight = Float.MAX_VALUE;
+//			drawGUI("Intersection-based 2-opt");
 		
-		while (graph.getWeight(path)< oldWeight) {
+		float oldWeight = Float.MAX_VALUE;
+		while (graph.getWeight(path) < oldWeight) {
 			oldWeight = graph.getWeight(path);
-			//			path = twoOpt.optimize(graph, path);
-			path = twoOpt.optimize(graph, path);
+			path = GeneralTwoOpt.optimizePath(graph, path, startTime);
 		}
 		if (DEBUG)
 			System.out.println("Weight: " + graph.getWeight(path));
