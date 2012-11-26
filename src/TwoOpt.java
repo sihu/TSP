@@ -7,7 +7,7 @@ public class TwoOpt {
 		int[] path = p.getPath();
 		for (int i = 0; i < path.length-1; i++) {
 			for (int j = i; j < path.length-1; j++) {
-				if (System.currentTimeMillis() - startTime > 2000)
+				if (System.currentTimeMillis() - startTime > 0)
 					return;
 				if (path[i] != path[j] && linesIntersects(g.getVertex(path[i]), g.getVertex(path[i+1]),
 						g.getVertex(path[j]), g.getVertex(path[j+1]))) {
@@ -15,10 +15,9 @@ public class TwoOpt {
 					return;
 				}
 			}
-
 		}
 	}
-	
+
 	private static boolean linesIntersects(Vertex p, Vertex q, Vertex r, Vertex s) {
 		return (p.getLineRepresentation(q).intersectsLine(r.getLineRepresentation(s)) &&
 				!p.equals(r) && !p.equals(s) && ! q.equals(r) && ! q.equals(s));

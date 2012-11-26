@@ -6,42 +6,39 @@ public class GeneralTwoOpt {
 	public static Path optimizePath(Graph g, Path p, long startTime) {
 		
 		int[] path = p.getPath();
-		int[] newPath = new int[path.length];
 		int newI = 0, newJ = 0;
 		float bestLength = 0;
 		
-		for (int i = 0; i < path.length-2; i++) {
-			if (System.currentTimeMillis() - startTime > 1700)
+		for (int i = 0; i < path.length-1; i++) {
+			if (System.currentTimeMillis() - startTime > 1750)
 				break;
-			newPath[i] = path[i];
+			int v1, v2, u1, u2;
+			
+			v1 = path[i];
+			v2 = path[i+1];
+			
 			float originalLength, newLength;
-			for (int j = i+2; j < path.length-2; j++) {
-				originalLength = 0;
-				originalLength += g.distanceBetween(path[i], path[i+1]);
-				originalLength += g.distanceBetween(path[j], path[j+1]);
+			for (int j = i+1; j < path.length-1; j++) {
+				u1 = path[j];
+				u2 = path[j+1];
 				
-				newLength = 0;	
-				newLength += g.distanceBetween(path[i], path[j]);
-				newLength += g.distanceBetween(path[j+1], path[i+1]);
+				originalLength = g.distanceBetween(v1, v2) + g.distanceBetween(u1,u2);
+				newLength = g.distanceBetween(v1, u1) + g.distanceBetween(v2, u2);
 				
 				if (newLength < originalLength) {
 					if (newI == 0 || (originalLength - newLength) > bestLength) {
 						newI = i;
-						newJ = j;
+						newJ = j+1;
 						bestLength = originalLength - newLength;
 					}
 				}
 			}
 		}
 		
-		for (int i = 1; i < (newJ+1)-newI; i++) {
-			newPath[newI+i] = path[newJ-i+1];
-		}
+		Path newPath = new Path(p.getPath());
 		
-		for (int i = newJ+1; i < path.length; i++) {
-			newPath[i] = path[i];
-		}
+		newPath.flipSubPath(newI, newJ);
 		
-		return new Path(newPath);
+		return newPath;
 	}
 }
