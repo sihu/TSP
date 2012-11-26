@@ -27,9 +27,7 @@ public class Path {
 		return new Path(path.clone());
 	}
 	
-	public void flipSubPath(int v1, int v2)
-	{
-//		System.out.println("Flipping subpath between " + path[v1] + " and " + path[v2]);
+	public void flipSubPath(int v1, int v2) {
 		int[] newPath = path.clone();
 		for (int i = 1; i < (v2-v1); i++) {
 			newPath[v1+i] = path[v2-i];

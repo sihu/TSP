@@ -7,8 +7,8 @@ public class TSP {
 	BufferedReader in;
 	Graph graph;
 	Path path;
-//	TwoOpt twoOpt;
-	boolean DEBUG = false;
+	//	TwoOpt twoOpt;
+	boolean DEBUG = true;
 	long startTime;
 
 	public static void main(String[] args) {
@@ -19,37 +19,48 @@ public class TSP {
 		startTime = System.currentTimeMillis();
 		in = new BufferedReader(new InputStreamReader(System.in));
 		readInstance();
-		path = NaivePath.getNaivePath(graph);
+		path = NearestNeighbour.getNaivePath(graph);
+
 		if (DEBUG) {
 			System.out.println("Weight: " + graph.getWeight(path));
-			System.out.println(path.toString());
-			drawGUI();
+			//			System.out.println(path.toString());
+			drawGUI("Greedy Tour");
 		}
-		if (DEBUG)
-			System.out.println("Optimizing path..");
-		//Path oldPath = path.clone();
+
 		float oldWeight = Float.MAX_VALUE;
-		TwoOpt twoOpt = new TwoOpt(path, graph);
-		while (graph.getWeight(path)< oldWeight && System.currentTimeMillis()-startTime < 1500) {
+		TwoOpt twoOpt = new TwoOpt(path, graph, startTime);
+//		while (graph.getWeight(path)< oldWeight) {
+//			oldWeight = graph.getWeight(path);
+//			//			path = twoOpt.optimize(graph, path);
+//			twoOpt.optimizePath();
+//		}
+//		if (DEBUG)
+//			System.out.println("Weight: " + graph.getWeight(path));
+//		System.out.println(path.toString());
+//		if (DEBUG)
+//			drawGUI("2-opt");
+
+		oldWeight = Float.MAX_VALUE;
+		
+		while (graph.getWeight(path)< oldWeight) {
 			oldWeight = graph.getWeight(path);
-			twoOpt.optimizePath();
+			//			path = twoOpt.optimize(graph, path);
+			path = twoOpt.optimize(graph, path);
 		}
 		if (DEBUG)
 			System.out.println("Weight: " + graph.getWeight(path));
 		System.out.println(path.toString());
 		if (DEBUG)
-			drawGUI();
+			drawGUI("General 2-opt");
 	} 
 
-	private void drawGUI() {
-		new GUI(graph, path);
+	private void drawGUI(String name) {
+		new GUI(graph, path.clone(), name);
 	}
 
 	private void readInstance() {
 		try {
 			int m = Integer.valueOf(in.readLine());
-			if (DEBUG)
-				System.out.println("Reading " + m + " vertices..");
 			Vertex[] vertices = new Vertex[m];
 			float[][] distanceMatrix = new float[m][m];
 
@@ -58,8 +69,6 @@ public class TSP {
 				float xCoord = Float.valueOf(vertex[0]);
 				float yCoord = Float.valueOf(vertex[1]);			
 				vertices[i] = new Vertex(xCoord,yCoord,i);
-				if (DEBUG)
-					System.out.println("Added vertex (" + vertices[i].getX() + ", " + vertices[i].getY() + ")");
 			}
 
 			for (int i = 0; i < m; i++) {
