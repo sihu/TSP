@@ -21,8 +21,6 @@ public class TSP {
 			startTime = System.currentTimeMillis();
 			tsp.drawGUI(graph, path, "Greedy Tour");
 		}
-		System.out.println(path.toString());
-		System.out.println(graph.getWeight(path));
 
 		float oldWeight = Float.MAX_VALUE;
 		while (graph.getWeight(path) < oldWeight) {
