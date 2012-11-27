@@ -28,8 +28,11 @@ public class Graph {
 			for (int j = 0; j < distanceMatrix[i].length; j++) {
 				idsToIdsSortedByDistance.get(i).put(distanceMatrix[i][j],j);
 			}
-		}
-		
+		}	
+	}
+	
+	public ArrayList<TreeMap<Float,Integer>> getIdsToIdsSortedByDistance() {
+		return idsToIdsSortedByDistance;
 	}
 	
 	public float getWeight(Path path) {
