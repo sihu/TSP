@@ -13,11 +13,11 @@ public class GeneralTwoOpt {
 			if (System.currentTimeMillis() - startTime > 1750)
 				break;
 			int v1, v2, u1, u2;
+			float originalLength, newLength;
 			
 			v1 = path[i];
 			v2 = path[i+1];
 			
-			float originalLength, newLength;
 			for (int j = i+1; j < path.length-1; j++) {
 				u1 = path[j];
 				u2 = path[j+1];
