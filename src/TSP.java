@@ -23,28 +23,28 @@ public class TSP {
 		System.out.println(path.toString());
 		System.out.println(graph.getWeight(path));
 
-//		float oldWeight = Float.MAX_VALUE;
-//		while (graph.getWeight(path) < oldWeight) {
-//			oldWeight = graph.getWeight(path);
-//			TwoOpt.optimizePath(graph, path, startTime);
-//		}
-//		if (DEBUG) {
-//			System.out.println("Optimized path with Intersection-based 2-opt (" + (System.currentTimeMillis() - startTime) + " ms)");
-//			startTime = System.currentTimeMillis();
-//			tsp.drawGUI(graph, path, "Intersection-based 2-opt");
-//		}
+		float oldWeight = Float.MAX_VALUE;
+		while (graph.getWeight(path) < oldWeight) {
+			oldWeight = graph.getWeight(path);
+			TwoOpt.optimizePath(graph, path, startTime);
+		}
+		if (DEBUG) {
+			System.out.println("Optimized path with Intersection-based 2-opt (" + (System.currentTimeMillis() - startTime) + " ms)");
+			startTime = System.currentTimeMillis();
+			tsp.drawGUI(graph, path, "Intersection-based 2-opt");
+		}
 
-//		float oldWeight = Float.MAX_VALUE;
-//		while (graph.getWeight(path) < oldWeight) {
-//			oldWeight = graph.getWeight(path);
-//			path = GeneralTwoOpt.optimizePath(graph, path, startTime);
-//		}
-//		if (DEBUG) {
-//			System.out.println("Optimized path with general 2-opt (" + (System.currentTimeMillis() - startTime) + " ms)");
-//			startTime = System.currentTimeMillis();
-//			tsp.drawGUI(graph, path, "General 2-opt");
-//		} 
-//		System.out.println(path.toString());
+		oldWeight = Float.MAX_VALUE;
+		while (graph.getWeight(path) < oldWeight) {
+			oldWeight = graph.getWeight(path);
+			path = GeneralTwoOpt.optimizePath(graph, path, startTime);
+		}
+		if (DEBUG) {
+			System.out.println("Optimized path with general 2-opt (" + (System.currentTimeMillis() - startTime) + " ms)");
+			startTime = System.currentTimeMillis();
+			tsp.drawGUI(graph, path, "General 2-opt");
+		} 
+		System.out.println(path.toString());
 	}
 
 	TSP() {
@@ -65,20 +65,11 @@ public class TSP {
 				double yCoord = io.getDouble();			
 				vertices[i] = new Vertex(xCoord,yCoord,i);
 			}
-
 			for (int i = 0; i < m; i++) {
 				for (int j = 0; j < m; j++) {
 					distanceMatrix[i][j] = vertices[i].distanceTo(vertices[j]);
 				}
 			}
-			
-			for (int i = 0; i < m; i++) {
-				for (int j = 0; j < m; j++) {
-					System.out.print(distanceMatrix[i][j]+",");
-				}
-				System.out.print("\n");
-			}
-			
 			return new Graph(vertices, distanceMatrix);
 	}
 }
