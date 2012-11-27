@@ -23,12 +23,11 @@ public class Graph {
 	}
 	
 	public void buildSortedTreeFromDistanceMatrix() {
-		for (int i = 0; i < distanceMatrix.length; i++) {
+		for (int i = 0; i < vertices.length; i++) {
 			idsToIdsSortedByDistance.add(i,new TreeMap<Float, Integer>());
 			for (int j = 0; j < distanceMatrix[i].length; j++) {
 				idsToIdsSortedByDistance.get(i).put(distanceMatrix[i][j],j);
 			}
-			idsToIdsSortedByDistance.get(i).remove(idsToIdsSortedByDistance.get(i).firstEntry());
 		}	
 	}
 	

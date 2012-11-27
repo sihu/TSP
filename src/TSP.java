@@ -2,7 +2,7 @@
 public class TSP {
 
 	private Kattio io;
-	static boolean DEBUG = false;
+	static boolean DEBUG = true;
 
 	public static void main(String[] args) {
 		TSP tsp = new TSP();
@@ -37,13 +37,14 @@ public class TSP {
 		while (graph.getWeight(path) < oldWeight) {
 			oldWeight = graph.getWeight(path);
 			path = GeneralTwoOpt.optimizePath(graph, path, startTime);
+			System.out.println("YOLO");
 		}
 		if (DEBUG) {
 			System.out.println("Optimized path with general 2-opt (" + (System.currentTimeMillis() - startTime) + " ms)");
 			startTime = System.currentTimeMillis();
 			tsp.drawGUI(graph, path, "General 2-opt");
 		} 
-		System.out.println(path.toString());
+//		System.out.println(path.toString());
 	}
 
 	TSP() {
