@@ -24,7 +24,7 @@ public class Path {
 		String pathString = "";
 		
 		for (int i = 0; i < path.length; i++) {
-			pathString += path[i] + "\n";
+			pathString += path[i] + " - " + order[path[i]] + "\n";
 		}
 		return pathString.substring(0, pathString.length()-1);
 	}

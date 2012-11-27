@@ -26,6 +26,7 @@ public class GUI extends Canvas
 		
 			g.setColor(Color.BLACK);
 			g.drawLine((int) p.getX()/scaling+20, (int) p.getY()/scaling+20, (int) q.getX()/scaling+20, (int) q.getY()/scaling+20);
+			g.drawString("" + p.getID(),(int) p.getX()/scaling - 3 + 20, (int) p.getY()/scaling - 3 + 20);
 			g.setColor(Color.RED);
 			g.fillOval((int) q.getX()/scaling - 3 + 20, (int) q.getY()/scaling - 3 + 20, 6, 6);
 		}

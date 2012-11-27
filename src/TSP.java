@@ -44,7 +44,7 @@ public class TSP {
 			startTime = System.currentTimeMillis();
 			tsp.drawGUI(graph, path, "General 2-opt");
 		} 
-//		System.out.println(path.toString());
+		System.out.println(path.toString());
 	}
 
 	TSP() {
