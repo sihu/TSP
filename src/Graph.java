@@ -28,6 +28,7 @@ public class Graph {
 			for (int j = 0; j < distanceMatrix[i].length; j++) {
 				idsToIdsSortedByDistance.get(i).put(distanceMatrix[i][j],j);
 			}
+			idsToIdsSortedByDistance.get(i).remove(idsToIdsSortedByDistance.get(i).firstEntry());
 		}	
 	}
 	
