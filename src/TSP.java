@@ -9,7 +9,7 @@ public class TSP {
 		long startTime = System.currentTimeMillis();
 
 		Graph graph = tsp.readInstance();
-//		graph.buildSortedTreeFromDistanceMatrix();
+		graph.buildClosestNeighbours();
 		if (DEBUG)  {
 			System.out.println("Read TSP instance (" + (System.currentTimeMillis() - startTime) + " ms)");
 			startTime = System.currentTimeMillis();
@@ -43,7 +43,7 @@ public class TSP {
 			startTime = System.currentTimeMillis();
 			tsp.drawGUI(graph, path, "General 2-opt");
 		} 
-		path.print();
+//		path.print();
 	}
 
 	TSP() {

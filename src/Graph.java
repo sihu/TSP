@@ -21,17 +21,19 @@ public class Graph {
 		return vertices[id];
 	}
 
-	public void buildSortedTreeFromDistanceMatrix() {
+	public void buildClosestNeighbours() {
 		TreeMap<Float, Integer> tree = new TreeMap<Float, Integer>();
 		
 		for (int i = 0; i < vertices.length; i++) {
-			closestNeighbours.add(new int[100]);
+			closestNeighbours.add(new int[400]);
 			
 			for (int j = 0; j < distanceMatrix[i].length; j++) {
 				tree.put(distanceMatrix[i][j],j);
 			}
 			
-			for (int k = 0; k < 100; k++) {
+			tree.pollFirstEntry();
+			
+			for (int k = 0; k < 399; k++) {
 				closestNeighbours.get(i)[k] = tree.pollFirstEntry().getValue();
 			}
 			
