@@ -20,13 +20,11 @@ public class Path {
 		return order;
 	}
 
-	public String toString() {
-		String pathString = "";
+	public void print() {
 		
 		for (int i = 0; i < path.length; i++) {
-			pathString += path[i] + " - " + order[path[i]] + "\n";
+			System.out.println(path[i]);
 		}
-		return pathString.substring(0, pathString.length()-1);
 	}
 
 	public int[] getPath(){

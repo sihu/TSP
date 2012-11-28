@@ -9,7 +9,7 @@ public class TSP {
 		long startTime = System.currentTimeMillis();
 
 		Graph graph = tsp.readInstance();
-		graph.buildSortedTreeFromDistanceMatrix();
+//		graph.buildSortedTreeFromDistanceMatrix();
 		if (DEBUG)  {
 			System.out.println("Read TSP instance (" + (System.currentTimeMillis() - startTime) + " ms)");
 			startTime = System.currentTimeMillis();
@@ -22,29 +22,28 @@ public class TSP {
 			tsp.drawGUI(graph, path, "Greedy Tour");
 		}
 
+//		float oldWeight = Float.MAX_VALUE;
+//		while (graph.getWeight(path) < oldWeight) {
+//			oldWeight = graph.getWeight(path);
+//			TwoOpt.optimizePath(graph, path, startTime);
+//		}
+//		if (DEBUG) {
+//			System.out.println("Optimized path with Intersection-based 2-opt (" + (System.currentTimeMillis() - startTime) + " ms)");
+//			startTime = System.currentTimeMillis();
+//			tsp.drawGUI(graph, path, "Intersection-based 2-opt");
+//		}
+
 		float oldWeight = Float.MAX_VALUE;
 		while (graph.getWeight(path) < oldWeight) {
 			oldWeight = graph.getWeight(path);
-			TwoOpt.optimizePath(graph, path, startTime);
-		}
-		if (DEBUG) {
-			System.out.println("Optimized path with Intersection-based 2-opt (" + (System.currentTimeMillis() - startTime) + " ms)");
-			startTime = System.currentTimeMillis();
-			tsp.drawGUI(graph, path, "Intersection-based 2-opt");
-		}
-
-		oldWeight = Float.MAX_VALUE;
-		while (graph.getWeight(path) < oldWeight) {
-			oldWeight = graph.getWeight(path);
 			path = GeneralTwoOpt.optimizePath(graph, path, startTime);
-			System.out.println("YOLO");
 		}
 		if (DEBUG) {
 			System.out.println("Optimized path with general 2-opt (" + (System.currentTimeMillis() - startTime) + " ms)");
 			startTime = System.currentTimeMillis();
 			tsp.drawGUI(graph, path, "General 2-opt");
 		} 
-		System.out.println(path.toString());
+		path.print();
 	}
 
 	TSP() {
