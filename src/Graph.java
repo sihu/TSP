@@ -1,40 +1,55 @@
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-
 public class Graph {
 
 	public Vertex[] vertices;
 	private float[][] distanceMatrix;
-	private ArrayList<TreeMap<Float, Integer>> idsToIdsSortedByDistance;
-	
+	private ArrayList<int[]> closestNeighbours;
+
 	public Graph(Vertex[] vertices, float[][] distanceMatrix) {
 		this.vertices = vertices;
 		this.distanceMatrix = distanceMatrix;
-		idsToIdsSortedByDistance = new ArrayList<TreeMap<Float, Integer>>();
+		closestNeighbours = new ArrayList<int[]>();
 	}
-	
+
 	public float distanceBetween(int v1, int v2) {
 		return distanceMatrix[v1][v2];
 	}
-	
+
 	public Vertex getVertex(int id) {
 		return vertices[id];
 	}
-	
+
 	public void buildSortedTreeFromDistanceMatrix() {
+		TreeMap<Float, Integer> tree = new TreeMap<Float, Integer>();
+		
 		for (int i = 0; i < vertices.length; i++) {
-			idsToIdsSortedByDistance.add(i,new TreeMap<Float, Integer>());
+			closestNeighbours.add(new int[100]);
+			
 			for (int j = 0; j < distanceMatrix[i].length; j++) {
-				idsToIdsSortedByDistance.get(i).put(distanceMatrix[i][j],j);
+				tree.put(distanceMatrix[i][j],j);
 			}
-		}	
+			
+			for (int k = 0; k < 100; k++) {
+				closestNeighbours.get(i)[k] = tree.pollFirstEntry().getValue();
+			}
+			
+			tree.clear();
+//			if (TSP.DEBUG) {
+//				System.out.println("Closest neigbours to " + i + ":");
+//				for (Float key : idsToIdsSortedByDistance.get(i).keySet()) {
+//					System.out.print(idsToIdsSortedByDistance.get(i).get(key) + ", ");
+//				}
+//				System.out.println("\n");
+//			}
+		}
 	}
-	
-	public ArrayList<TreeMap<Float,Integer>> getIdsToIdsSortedByDistance() {
-		return idsToIdsSortedByDistance;
+
+	public int[] getClosestNeighbours(int id) {
+		return closestNeighbours.get(id);
 	}
-	
+
 	public float getWeight(Path path) {
 		float f = 0;
 		for (int i = 0; i < path.getLength()-1; i++) {
