@@ -11,9 +11,9 @@ public class Path {
 	}
 
 	private int[] orderPath(int[] path) {
-		
+
 		int[] order = new int[path.length];
-		
+
 		for (int i = 0; i < path.length; i++) {
 			order[path[i]] = i;
 		}
@@ -21,10 +21,13 @@ public class Path {
 	}
 
 	public void print() {
-		
+		StringBuilder sb = new StringBuilder();
+
 		for (int i = 0; i < path.length; i++) {
-			System.out.println(path[i]);
+			sb.append(path[i] + "\n") ;
 		}
+
+		System.out.println(sb);
 	}
 
 	public int[] getPath(){
@@ -39,15 +42,28 @@ public class Path {
 	public Path clone() {
 		return new Path(path.clone());
 	}
-	
+
 	public void flipSubPath(int v1, int v2) {
-		int[] newPath = path.clone();
-		int[] newOrder = order.clone();
-		for (int i = 1; i < (v2-v1); i++) {
-			newPath[v1+i] = path[v2-i];
-			newOrder[newPath[v1+i]] = order[path[v2-i]];
+		while (v1 != v2 && !(v1 == v2 + 1)) {
+
+			int tmp = v1;
+			order[path[v1]] = v2;
+			order[path[v2]] = tmp;
+
+			tmp = path[v1];
+			path[v1] = path[v2];
+			path[v2] = tmp;
+
+			v1++;
+			v2--;
+			
+			if (v2 < 0) {
+				v2 = length - 1;
+			}
+
+			if (v1 > length - 1) {
+				v1 = 0;
+			}
 		}
-		path = newPath;
-		order = newOrder;
 	}
 }

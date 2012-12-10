@@ -4,7 +4,7 @@ import java.util.TreeMap;
 public class Graph {
 
 	public Vertex[] vertices;
-	private float[][] distanceMatrix;
+	public float[][] distanceMatrix;
 	private ArrayList<int[]> closestNeighbours;
 
 	public Graph(Vertex[] vertices, float[][] distanceMatrix) {
@@ -22,10 +22,18 @@ public class Graph {
 	}
 
 	public void buildClosestNeighbours() {
+		
+		int numClosestNeighbours;
+		
+		if (vertices.length > 100)
+			numClosestNeighbours = 100;
+		else
+			numClosestNeighbours = vertices.length/2;
+		
 		TreeMap<Float, Integer> tree = new TreeMap<Float, Integer>();
 		
 		for (int i = 0; i < vertices.length; i++) {
-			closestNeighbours.add(new int[400]);
+			closestNeighbours.add(new int[numClosestNeighbours]);
 			
 			for (int j = 0; j < distanceMatrix[i].length; j++) {
 				tree.put(distanceMatrix[i][j],j);
@@ -33,18 +41,11 @@ public class Graph {
 			
 			tree.pollFirstEntry();
 			
-			for (int k = 0; k < 399; k++) {
+			for (int k = 0; k < numClosestNeighbours-1; k++) {
 				closestNeighbours.get(i)[k] = tree.pollFirstEntry().getValue();
 			}
 			
 			tree.clear();
-//			if (TSP.DEBUG) {
-//				System.out.println("Closest neigbours to " + i + ":");
-//				for (Float key : idsToIdsSortedByDistance.get(i).keySet()) {
-//					System.out.print(idsToIdsSortedByDistance.get(i).get(key) + ", ");
-//				}
-//				System.out.println("\n");
-//			}
 		}
 	}
 
@@ -57,6 +58,7 @@ public class Graph {
 		for (int i = 0; i < path.getLength()-1; i++) {
 			f += distanceBetween(path.getPath()[i], path.getPath()[i+1]);
 		}
+		f+= distanceBetween(path.getPath()[path.getLength()-1], 0);
 		return f;
 	}
 }

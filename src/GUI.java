@@ -12,7 +12,7 @@ public class GUI extends Canvas
 		this.graph = graph;
 		this.path = path;
 		
-		frame = new JFrame("TSP - " + name + ", Length: " + graph.getWeight(path)/scaling);
+		frame = new JFrame("TSP - " + name + ", Length: " + graph.getWeight(path));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(740,740);
 		frame.add(this);
@@ -26,7 +26,7 @@ public class GUI extends Canvas
 		
 			g.setColor(Color.BLACK);
 			g.drawLine((int) p.getX()/scaling+20, (int) p.getY()/scaling+20, (int) q.getX()/scaling+20, (int) q.getY()/scaling+20);
-			g.drawString("" + p.getID(),(int) p.getX()/scaling - 3 + 20, (int) p.getY()/scaling - 3 + 20);
+//			g.drawString("" + p.getID(),(int) p.getX()/scaling - 3 + 20, (int) p.getY()/scaling - 3 + 20);
 			g.setColor(Color.RED);
 			g.fillOval((int) q.getX()/scaling - 3 + 20, (int) q.getY()/scaling - 3 + 20, 6, 6);
 		}

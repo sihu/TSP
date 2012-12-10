@@ -9,7 +9,6 @@ public class NearestNeighbour {
 
 		for (int i = 1; i < m; i++) {
 			int best = -1;
-
 			for (int j = 0; j < m; j++) {
 				if (!used[j] && (best == -1 || g.distanceBetween(path[i-1],j) 
 						< g.distanceBetween(path[i-1], best)))
